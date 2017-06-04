@@ -2,10 +2,10 @@
 A course management platform built in React and Flux (front-end) and NodeJS (backend)
 
 ### Summary
-This is still a work in progress
+This is still a work in progress. Project will be updated weekly.
 
 
-####License
+#### License
 
 ```
 MIT License
