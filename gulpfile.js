@@ -3,7 +3,7 @@
 var gulp = require('gulp'); // task runner
 var connect = require('gulp-connect'); // runs local dev server
 var open = require('gulp-open'); // opens a url in a Web browser
-var lint = require('gulp-eslint'); // Lint JS files + jsx files
+var eslint = require('gulp-eslint'); // Lint JS files + jsx files
 var browserify = require('browserify'); // bundles the javascript
 var reactify = require('reactify'); // transforms reach JSX to JS
 var source = require('vinyl-source-stream'); // use conventional text streams with Gulp
@@ -16,7 +16,11 @@ var config = {
         html: './src/*.html',
         js: './src/**/*.js',
         mainJS: './src/main.js',
-        dist: './dist'
+        dist: './dist',
+        css: [
+            'node_modules/bootstrap/dist/css/bootstrap.min.css',
+            'node_modules/bootstrap/dist/css/bootstrap-theme.min.css'
+        ]
     }
 };
 
