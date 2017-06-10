@@ -62,15 +62,15 @@ gulp.task('css', function () {
 
 gulp.task('lint', function () {
  return gulp.src(config.paths.js)
-     .pipe(eslint({config: 'eslint.config.json'}))
+         .pipe(eslint({config: 'eslint.config.json'}))
      .pipe(eslint.format());
 });
 
 // file watcher
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
-    gulp.watch(config.paths.js, ['js']);
+    gulp.watch(config.paths.js, ['js', 'lint']);
 });
 
 // add default task to be run when typing gulp
-gulp.task('default', ['html', 'js', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
