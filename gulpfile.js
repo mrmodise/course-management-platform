@@ -8,6 +8,7 @@ var browserify = require('browserify'); // bundles the javascript
 var reactify = require('reactify'); // transforms reach JSX to JS
 var source = require('vinyl-source-stream'); // use conventional text streams with Gulp
 var concat = require('gulp-concat'); // concatenates files
+var docco = require('gulp-docco'); // generates docs
 
 var config = {
     port: 9005,
@@ -37,7 +38,9 @@ gulp.task('connect', function () {
 // opens URl in browser
 gulp.task('open',['connect'], function () {
     gulp.src('dist/index.html')
-        .pipe(open({uri: config.devBaseUrl + ':' + config.port + '/'}));
+        .pipe(open({
+            uri: config.devBaseUrl + ':' + config.port + '/'
+        }));
 
 });
 
@@ -70,6 +73,13 @@ gulp.task('lint', function () {
      .pipe(eslint.format());
 });
 
+// Generate documentation pages and save into `docs` directory.
+gulp.task('docs', function () {
+    return gulp.src(config.paths.js)
+        .pipe(docco())
+        .pipe(gulp.dest('docs'));
+});
+
 // file watcher
 gulp.task('watch', function () {
     gulp.watch(config.paths.html, ['html']);
@@ -77,4 +87,4 @@ gulp.task('watch', function () {
 });
 
 // add default task to be run when typing gulp
-gulp.task('default', ['html', 'js', 'css', 'lint', 'open', 'watch']);
+gulp.task('default', ['html', 'js', 'css', 'lint', 'docs', 'open', 'watch']);
